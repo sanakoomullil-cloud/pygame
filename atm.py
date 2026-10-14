@@ -65,9 +65,9 @@ def topwin():
         bg="light grey"
     )
 
-    l1 = Label(top, text="100", bg="light grey")
-    l2 = Label(top, text="50", bg="light grey")
-    l3 = Label(top, text="10", bg="light grey")
+    l1 = Label(top, text="2000", bg="light grey")
+    l2 = Label(top, text="500", bg="light grey")
+    l3 = Label(top, text="100", bg="light grey")
 
     t1 = Entry(top)
     t2 = Entry(top)
@@ -80,12 +80,12 @@ def topwin():
         try:
             amount = int(entry.get())
 
-            note2000 = amount // 100
-            amount %= 100
-            note500 = amount // 50
-            amount %= 50
+            note2000 = amount // 2000
+            amount %= 2000
+            note500 = amount // 500
+            amount %= 500
 
-            note100 = amount // 10
+            note100 = amount // 100
 
             t1.delete(0, END)
             t2.delete(0, END)
