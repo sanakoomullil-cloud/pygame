@@ -11,15 +11,15 @@ class RestaurantOrderManagement:
 
         # A dictionary to store the menu items and their prices
         self.menu_items = {
-            "FRIES MEAL": 2,
-            "LUNCH MEAL": 2,
-            "BURGER MEAL": 3,
-            "PIZZA MEAL": 4,
-            "CHEESE BURGER": 2.5,
-            "DRINKS": 1
+            "FRIES MEAL": 4,
+            "LUNCH MEAL": 5,
+            "BURGER MEAL": 6,
+            "PIZZA MEAL": 12,
+            "CHEESE BURGER": 8,
+            "DRINKS": 2
         }
 
-        self.exchange_rate = 82  # Exchange rate for currency conversion
+        self.exchange_rate = 95  # Exchange rate for currency conversion
 
         self.setup_background(root)  # Set up the background image
 
@@ -100,7 +100,7 @@ class RestaurantOrderManagement:
         canvas = tk.Canvas(root, width=bg_width, height=bg_height)
         canvas.pack()
 
-        original_image = tk.PhotoImage(file="resturant.avif")
+        original_image = tk.PhotoImage(file="resturant2.0.png")
         background_image = original_image.subsample(
             original_image.width() // bg_width,
             original_image.height() // bg_height
