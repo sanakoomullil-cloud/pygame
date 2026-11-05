@@ -1,0 +1,47 @@
+import random
+
+class AIRockPaperScissors:
+    def __init__(self):
+        self.moves = ["rock", "paper", "scissors"]
+        self.user_history = []
+
+    def get_ai_move(self):
+        if len(self.user_history) < 2:
+            return random.choice(self.moves)
+        
+        most_common_user_move = max(set(self.user_history), key=self.user_history.count)
+        
+        counters = {
+            "rock": "paper",
+            "paper": "scissors",
+            "scissors": "rock"
+        }
+        return counters[most_common_user_move]
+
+    def determine_winner(self, user, ai):
+        if user == ai:
+            return "It's a tie!"
+            
+        winning_combos = [("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")]
+        if (user, ai) in winning_combos:
+            return "You win!"
+        return "AI wins!"
+
+if __name__ == "__main__":
+    game = AIRockPaperScissors()
+    running = True
+    while running:
+        user_choice = input("Choose rock, paper, or scissors: ").lower().strip()
+        
+        if user_choice in ["exit", "quit"]:
+            running = False
+            continue
+            
+        if user_choice not in game.moves:
+            continue
+
+        ai_choice = game.get_ai_move()
+        game.user_history.append(user_choice)
+
+        print(f"AI chose: {ai_choice}")
+        print(game.determine_winner(user_choice, ai_choice))
