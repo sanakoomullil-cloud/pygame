@@ -1,0 +1,47 @@
+import random
+
+MOVIES = [
+    {"title": "The Dark Knight", "genre": "Action", "mood": "Thrill", "imdb": 9.0, "overview": "A dark masterpiece facing a chaotic villain."},
+    {"title": "Spirited Away", "genre": "Animation", "mood": "Whimsical", "imdb": 8.6, "overview": "A beautiful journey in a magical world."},
+    {"title": "Superbad", "genre": "Comedy", "mood": "Cheerful", "imdb": 7.6, "overview": "An incredibly hilarious and fun adventure."},
+    {"title": "The Conjuring", "genre": "Horror", "mood": "Scared", "imdb": 7.5, "overview": "A terrifying and deeply disturbing haunting."},
+    {"title": "Interstellar", "genre": "Sci-Fi", "mood": "Thoughtful", "imdb": 8.7, "overview": "An emotional and mind-bending space exploration."},
+    {"title": "La La Land", "genre": "Romance", "mood": "Cheerful", "imdb": 8.0, "overview": "A vibrant and beautifully romantic musical."}
+]
+
+def main():
+    while True:
+        c = input("\n1.Random | 2.Genre | 3.Mood | 4.Rating | 5.Exit\nChoice: ").strip().lower()
+        if c in ["5", "exit"]: 
+            break
+        
+        m = []
+        if c in ["1", "random"]: 
+            m = MOVIES
+        elif c in ["2", "genre"]: 
+            g = input("Enter Genre (Action, Animation, Comedy, Horror, Sci-Fi, Romance): ").strip().lower()
+            m = [x for x in MOVIES if x["genre"].lower() == g]
+        elif c in ["3", "mood"]: 
+            md = input("Enter Mood (Thrill, Whimsical, Cheerful, Scared, Thoughtful): ").strip().lower()
+            m = [x for x in MOVIES if x["mood"].lower() == md]
+        elif c in ["4", "rating"]: 
+            try:
+                r = float(input("Enter Min IMDb Rating (e.g. 7.5): ").strip())
+                m = [x for x in MOVIES if x["imdb"] >= r]
+            except ValueError:
+                print("Please enter a valid number for rating.")
+                continue
+        else:
+            print("Invalid menu choice. Please type a number from 1 to 5.")
+            continue
+        
+        if m:
+            r = random.choice(m)
+            s = "Positive" if any(w in r["overview"].lower() for w in ["beautiful", "hilarious", "fun", "romantic", "vibrant"]) else "Negative"
+            print(f"\n{r['title']} ({r['genre']}) | Rating: {r['imdb']}\nOverview: {r['overview']}\nSentiment: {s}")
+        else:
+            print("No matching movies found for your filter. Try again!")
+
+if __name__ == "__main__":
+    main()
+
